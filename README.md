@@ -1,5 +1,5 @@
 # Agen
-![Icinga2-Tray Screenshot](/screenshot/screen.PNG)
+![Screenshot](/screenshot/screen.PNG)
 ## Description
 Tool to create configuration of icinga2 for passive windows checks(for using with nsclient++)
 
