@@ -1,0 +1,366 @@
+﻿#Segmente
+winSBServer
+winDFS
+winIIS
+winSRVAllgemein
+EveIDAllgemein
+winADDNS
+EveIDAD
+winAviraExchange
+EveAviraExchange
+winBackupExecClient2014
+winBackupExec2014
+EveBackupExec
+winDHCP
+EveIDDHCP
+winExchange2007
+EveID Exchange 2007
+winExchange2013
+eveExchange2013
+winSharepointFoundation2010
+winSharepoint2013
+winTrendMicro
+winRDFarmGateway
+winVPN
+winSQL2012
+winHyperv
+eveHyperv
+winWSUS
+winLync
+eveLync
+ExternalScripts
+@
+#Module
+[/modules]
+CheckSystem=enabled
+CheckDisk=enabled
+CheckEventLog=enabled
+CheckLogfile=enabled
+CheckWMI=enabled
+CheckExternalScripts=enabled
+CheckHelpers=enabled
+Scheduler=enabled
+NSCAClient=enabled
+@
+#AliAllgemein
+[/settings/external scripts/alias]
+alias_cpu = checkCPU warn=90 crit=95 time=5m time=1m time=30s
+alias_mem = checkMem MaxWarn=85% MaxCrit=95% ShowAll=long type=physical type=virtual type=paged type=page
+alias_disk = checkDriveSize MinWarn=20% MinCrit=5% CheckAll FilterType=FIXED
+alias_up = checkUpTime MinWarn=1d MinWarn=20m
+@
+#Interval
+[/settings/scheduler/schedules/default]
+interval=2m
+@
+#SchAlias
+[/settings/scheduler/schedules]
+CPU=alias_cpu
+RAM=alias_mem
+Uptime=alias_up
+Hard Disk = alias_disk
+host_check=check_ok
+@
+#SchAliasINI
+CPU
+Hard Disk
+RAM
+@
+##ExternalScripts
+[/settings/external scripts/scripts]
+@
+####Kommentare werden durch zwei @ (oben und unten von dem Rest getrennt)
+check_rdp=scripts\check_no_rdp.bat:Check_RDP_Session
+host_bat_ok=scripts\check_perf.bat:Host_OK
+check_lsi=scripts\check_lsi.exe /c0:Mega_Raid_Controller_Status - Nur für physikalische Server mit LSI RAID	- benötigt zusätzliche Software für SNMP und Nsclient Addon
+@
+##EveIDAllgemein
+;EventID
+1080:system:1:10:20:GPO_Verarbeitung_Fehler
+6008:system:1:10:20:Unerwartetes_Herunterfahren
+7031:system:1:10:20:Dienst_Unerwartet_Beendet
+1001:system:1:10:20:Neustart/schwerw._Fehler
+41:system:1:10:20:Neustart/Abgeschtuertzt
+5719:system:1:10:20:AD_Anmeldeserver_n.e
+@
+##EveIDAD
+;EveIDAD
+5723:system:1:10:20:Kommunikationsproblem_Computerkonto
+4013:DNS Server:1:10:20:Erstsynchronisation_mit_AD
+1863:Directory Service:1:10:20:Replikation_Verzoegerung
+4740:system:1:10:20:Benutzer_gesperrt
+@
+##winSBServer
+;Small Business Server
+MSSQL$SBSMONITORING:Windows_Internal_Database
+@
+##winDFS
+;DFS Service
+Dfs:DFS_Namespace
+@
+##winIIS
+;IIS Dienste
+AppHostSvc:Anwendungshost_Hilfsdienst
+W3SVC:WWW_Publishingdienst
+IISADMIN:IIS_Verwaltungsdienst
+@
+##EveIDDHCP
+;EveIDDHCP
+10020:system:1:10:20:DHCP_Dyn._IP
+@
+##EveExchange2013
+;Exchange 2013 eventID 
+9668:application:1:10:20:Ex_DB_Max._Groesse_erreicht
+12015:application:1:10:20:Ex_Transport_Zert_abgelaufen
+1031:application:1:10:20:EX_ActiveSync_Deaktivert_fuer_Benutzer
+9871:application:1:10:20:Ex_DB_Onlinewartung_Warnung
+3004:application:1:10:20:Abwesenheitsassistent_Fehler
+@
+##EveID Exchange 2007
+;Exchange 2013 eventID
+9668:application:1:10:20:Ex_DB_Max._Groesse_erreicht
+12015:application:1:10:20:Ex_Transport_Zert_abgelaufen
+1031:application:1:10:20:EX_ActiveSync_Deaktivert_fuer_Benutzer
+9871:application:1:10:20:Ex_DB_Onlinewartung_Warnung
+3004:application:1:10:20:Abwesenheitsassistent_Fehler
+@
+
+##winSRVAllgemein
+;Windows Dienste
+LanmanWorkstation:Windows_Dienst_Arbeitsstationsdienst
+LanmanServer:Windows_Dienst_Server
+Netlogon:Windows_Dienst_Anmeldedienst
+LanmanWorkstation:Windows_Dienst_Arbeitsstationsdienst
+BFE:Windows_Dienst_Basisfiltermodul
+SENS:Windows_Dienst_Benachrichtigungsdienst_fuer_Systemereignisse
+ProfSvc:Windows_Dienst_Benutzerprofildienst
+EventSystem:Windows_Dienst_COM+-Ereignissystem
+DcomLaunch:Windows_Dienst_DCOM-Server-Prozessstart
+Spooler:Windows_Dienst_Druckwarteschlange
+iphlpsvc:Windows_Dienst_IP-Hilfsdienst
+LSM:Windows_Dienst_Lokaler_Sitzungs-Manager
+nsi:Windows_Dienst_Netzwerkspeicher-Schnittstellendienst
+NlaSvc:Windows_Dienst_NLA_Network_Location_Awareness
+RpcSs:Windows_Dienst_Remoteprozeduraufruf_RPC
+SamSs:Windows_Dienst_Sicherheitskonto-Manager
+EventLog:Windows_Dienst_Windows-Ereignisprotokoll
+MpsSvc:Windows_Dienst_Windows-Firewall
+WinRM:Windows_Dienst_Windows-Remoteverwaltung_WS-Verwaltung
+gpsvc:Windows_Dienst_Gruppenrichtlinienclient
+lmhosts:Windows_Dienst_TCP/IP-NetBIOS-Hilfsdienst
+Dnscache:Windows_Dienst_DNS_Client
+@
+##winExchange2013
+;Exchange Dienste 2013
+MSExchangeADTopology:Windows_Dienst_Ex_AD_Topology
+MSExchangeAntispamUpdate:Windows_Dienst_Ex_Anti-Spam_Update
+MSExchangeDiagnostics:Windows_Dienst_Ex_Diagnostics
+MSExchangeEdgeSync:Windows_Dienst_Ex_EdgeSync
+MSExchangeFrontEndTransport:Windows_Dienst_Ex_Frontend_Transport
+MSExchangeHM:Windows_Dienst_Ex_Health_Manager
+MSExchangeMailboxAssistants:Windows_Dienst_Ex_Mailbox_Assistant
+MSExchangeMailboxReplication:Windows_Dienst_Ex_Mailbox_Replication
+MSExchangeDelivery:Windows_Dienst_Ex_Tansport_Delivery
+MSExchangeSubmission:Windows_Dienst_Ex_Transport_Submission
+MSExchangeRepl:Windows_Dienst_Ex_Replication
+MSExchangeRPC:Windows_Dienst_Ex_RPC_Client_Access
+MSExchangeFastSearch:Windows_Deinst_Ex_Search
+HostControllerService:Windows_Dienst_Ex_Search_Host
+MSExchangeServiceHost:Windows_Dienst_Ex_Service_Host
+MSExchangeThrottling:Windows_Dienst_Ex_Throttling
+MSExchangeTransport:Windows_Dienst_Ex_Transport
+MSExchangeTransportLogSearch:Windows_Dienst_Ex_Transport_Log_Search
+MSExchangeUM:Windows_Dienst_Ex_Unified_Messaging
+MSExchangeUMCR:Windows_Dienst_Ex_Unified_Messaging_CL
+MSExchangeIS:Windows_Dienst_Ex_Informationstore
+FMS:Windows_Dienst_Filtering_Management_Service
+MSExchangePop3:Windows_Dienst_Ex_POP3
+MSExchangeImap4:Windows_Dienst_Ex_IMAP4
+@
+##winExchange2007
+;Exchange Dienste 2007
+MSExchangeADTopology:Windows_Dienst_Ex_AD_Topology
+MSExchangeAntispamUpdate:Windows_Dienst_Ex_Anti-Spam_Update
+MSExchangeEdgeSync:Windows_Dienst_Ex_EdgeSync
+MSExchangeMailboxAssistants:Windows_Dienst_Ex_Mailbox_Assistant
+MSExchangeMailSubmission:Windows_Dienst_Ex_Transport_Submission
+MSExchangeRepl:Windows_Dienst_Ex_Replication
+MSExchangeServiceHost:Windows_Dienst_Ex_Service_Host
+MSExchangeTransport:Windows_Dienst_Ex_Transport
+MSExchangeIS:Windows_Dienst_Ex_Informationstore
+MSExchangeTransportLogSearch:Windows_Dienst_Ex_Transport_Log_Search
+MSExchangeFDS:Windows_Dienst_Ex_Dateiverteilung
+MSExchangeImap4:Windows_Dienst_Ex_IMAP4
+MSExchangeMonitoring:Windows_Dienst_Ex_Monitoring
+MSExchangePop3:Windows_Dienst_Ex_POP3
+MSExchangeSA:Windows_Dienst_Ex_Systemaufsicht
+MSExchangeSearch:Windows_Dienst_Ex_Sucheindizierung
+MSExchangeUM:Windows_Dienst_Ex_Unified_Messaging
+@
+##EveAviraExchange
+;Avira Exchange Events
+272:application:1:10:20:Avira_Exchange_Update_Fehler
+185:application:1:10:20:Avira_Exchange_OnAccess_Fehler
+3401:application:1:10:20:Avira_Exchange_DB_Sicherunsfehler
+@
+##winAviraExchange
+;Avira Exchange Dienste
+avexs:Windows_Dienst_Avira_Exchange_Security
+avexsctrl:Windows_Dienst_Avira_Exchange_Control
+@
+##EveBackupExec
+;BackupExec Event IDs
+33152:application:1:10:720:BE_Anwendungsfehler
+34113:application:1:10:720:BE_Backup_fehlgeschlagen
+34114:application:1:10:720:BE_Backup_angebrochen
+33919:application:1:10:720:BE_Backup_nicht_startbar
+34577:application:1:10:720:BE_LiveUpdate_Warnungen
+34581:application:1:10:720:BE_Wartungsablaefe_Warnungen
+57600:application:1:10:720:BE_Speichergeraet_Fehler1
+57665:application:1:10:720:BE_Speichergeraet_Fehler2
+58053:application:1:10:720:BE_Speichergeraet_Fehler3
+57612:application:1:10:720:BE_Medienlesevorgang_Fehler
+57755:application:1:10:720:BE_Backup_Ausnahmen
+65313:application:1:10:720:BE_Speichergeraet_Warnung
+@
+##winBackupExecClient2014
+;BackupExec 2014 Client
+BackupExecAgentAccelerator:Windows_Dienst_BE_Remote_Agent
+bedbg:Windows_Dienst_BE_Error_Recording_Service
+@
+##winBackupExec
+;BackupExec Windows Dienste
+BackupExecAgentBrowser:Windows_Dienst_BE_Agent_Browser
+BackupExecDeviceMediaService:Windows_Dienst_BE_Device/Media_Service
+BackupExecJobEngine:Windows_Dienst_BE_Job_Engine
+BackupExecManagementService:Windows_Dienst_BE_Management_Service
+BackupExecRPCService:Windows_Dienst_BE_Server
+MSSQLBKUPEXEC:Windows_Dienst_BE_MSSQL_BKUPEXEC
+SQLBrowser:Windows_Dienst_BE_MSSQL_Browser
+SQLWriter:Windows_Dienst_BE_MSSQL_VSS_Writer
+@
+##winBackupExec2014
+;BackupExec 2014 Windows Dienste
+BackupExecAgentBrowser:Windows_Dienst_BE_Agent_Browser
+BackupExecDeviceMediaService:Windows_Dienst_BE_Device/Media_Service
+bedbg:Windows_Dienst_BE_Error_Recording_Service
+BackupExecJobEngine:Windows_Dienst_BE_Job_Engine
+BackupExecManagementService:Windows_Dienst_BE_Management_Service
+BackupExecRPCService:Windows_Dienst_BE_Server
+BackupExecAgentAccelerator:Windows_Dienst_BE_Remote_Agent
+MSSQL$BKUPEXEC:Windows_Dienst_BE_MSSQL$BKUPEXEC
+SQLBrowser:Windows_Dienst_BE_MSSQL_Browser
+SQLWriter:Windows_Dienst_BE_MSSQL_VSS_Writer
+@
+##winADDNS
+;AD,DNS Dienste
+W32Time:Windows_Zeitgeber
+NtFrs:Dateireplikationsdienst
+NTDS:Windows_Dienst_AD_Domaenendiest
+ADWS:Windows_Dienst_AD_Webdiest
+DNS:Windows_Dienst_DNS_Server
+Kdc:Windows_Dienst_Kerberos
+@
+##winDHCP
+;DHCP Dienst
+DHCPServer:Windows_Dienst_DHCP_Server
+@
+##winSharepointFoundation2010
+;Windows Dienst Sharepoint
+SPAdminV4:Windows_Dienst_SP_Administration
+SPTimerV4:Windows_Dienst_SP_Timer_Service
+SPTraceV4:Windows_Dienst_SP_Tracing_Service
+SPSearch4:Windows_Dienst_SP_Search_V4
+@
+##winSharepoint2013
+;Windows Dienste Sharepoint 2013
+SPAdminV4:Windows_Dienst_SP_SharePoint_Administration
+SPSearchHostController:Windows_Dienst_SP_Search_Host_Controller
+OSearch15:Windows_Dienst_SP_Server_Search_15
+SPTimerV4:Windows_Dienst_SP_Timer_Service
+SPTraceV4:Windows_Dienst_SP_Tracing_Service
+DCLauncher15:Windows_Dienst_SP_Dokumentenkonvertierungen
+@
+##winTrendMicro
+;TrendMicro Server-Master Dienste
+ntrtscan:Trend_Micro_Security_Agent_Echtzeitsuche
+tmlisten:Trend_Micro_Security_Agent_Listener
+ofcservice:Trend_Micro_Security_Server_Master_Service
+TMiCRCScanService:Trend_Micro_Smart_Scan_Service
+@
+##winVPN
+;Windows Dienste VPN Server
+RemoteAccess:Windows_Dienst_Routing_und_RAS
+RasMan:Windows_Dienst_RAS
+@
+##winSQL2012
+;Windows Dienste SQL2012
+MSSQLFDLauncher:SQL_Full-text_Filter_Daemon_Launcher_MSSQLSERVER
+MSSQLServerOLAPService:_SQL_Server_Analysis_Services_MSSQLSERVER
+MsDtsServer110:SQL_Server_Integration_Services_11.0
+ReportServer:SQL_Server_Reporting_Services_MSSQLSERVER
+MSSQLSERVER:SQL_Server_MSSQLSERVER
+MsDtsServer110:SQL_Server_Integration_Services
+SQLWriter:SQL_Server_VSS_Writer
+SQLSERVERAGENT:SQL_Server-Agent_MSSQLSERVER
+SQLBrowser:SQL_Server-Browser
+@
+##winRDFarmGateway
+;RDS Farm Dienste
+TScPubRPC:RemoteApp-_und_Desktopverbinungsverwaltung
+TermService:Remotedesktopdienste
+TSGateway:Remotedesktopgateway
+TermServLicensing:Remotedesktoplizenzierung
+Tssdis:Remotedesktop-Verbindungsbroker
+RDMS:Remotedesktopverwaltung
+@
+##winHyperv
+;Hyper-V Dienste
+vmms:Hyper-V_Verwaltung_VMs
+@
+##eveHyperv
+;Hyper-V EventLog
+4010:admin:1:10:20:HyperV_Integranion_VM
+27:system:1:10:20:_HyperV_Integration_VM_Update
+@
+##winWSUS
+;WSUS Windows Dienste
+WSusCertServer:Windows_Dienst_Certificate_Server
+WSusService:Windows_Dienst_WSUS
+@
+##winLync
+;Microsoft Lync Server Dienste
+MASTER:Master_Replikations_Agent_Lync_Server
+MSMQ:Windows_Dienst_Message_Queue
+MSSQL$CHAT:SQL_Server_CHAT_Lync
+MSSQL$LYNCLOCAL:SQL_Server_LYNCLOCAL_Lync
+MSSQL$RTC:SQL_Server_RTC_Lync
+MSSQL$RTCLOCAL:SQL_Server_RTCLOCAL_Lync
+RTCASMCU:Lync_Server_Anwendunsfreigabe
+RTCATS:Lync_Server_Audiotestdienst
+RTCCHAT:Lync_Server_Chat
+RTCCLSAGT:Lync_Server_Protokollierungsdienst_Agent
+RTCCPS:Lync_Server_Anruf_Parken
+RTCMEDSRV:Lync_Server_Vermittlung
+RTCDATAMCU:Lync_Server_Webkonferenz
+RTCPDPAUTH:Lync_Server_Richtiliendienst
+RTCRGS:Lync_Server_Reaktionsgruppe
+RTCSRV:Lync_Server_Frontend
+RTCXMPPTGW:Lync_Server_XMPP_Gateway
+SQLBrowser:SQL_Server_Browser
+@
+##eveLync
+;Eventlog Lync Server
+32054:Lync Server:1:10:20:Lync_Fehler_EWS_AutoErmittlung
+41033:Lync Server:1:10:20:Lync_Fehler_WAC_Ermittlung
+21054:Lync Server:1:10:20:Lync_Fehler_Benutzer_Indezierung
+2014:Lync Server:1:10:20:Lync_Fehler_Lesen_DB
+25053:Lync Server:1:10:20:Lync_Fehler_Frontend_Reagiert-nicht
+30009:Lync Server:1:10:20:Lync_Fehler_Verbindung_DC
+30011:Lync Server:1:10:20:Lync_Fehler_Verarbeitung_Objekt
+30022:Lync Server:1:10:20:Lync_Fehler_DC_Verbindung_beendet
+31030:Lync Server:1:10:20:Lync_Fehler_Verwaltungsspeicher
+32003:Lync Server:1:10:20:Lync_Anwendung_Nicht_gestartet
+@
+
+
